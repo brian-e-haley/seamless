@@ -2,11 +2,11 @@ version: '3.8'
 
 services:
   seamless:
-    container_name: django
+    container_name: seamless_django
     image: seamless_django
     build: .
-    command: pipenv run python manage.py runserver 0.0.0.0:8000
+    command: pipenv run python manage.py runserver 0.0.0.0:7000
     volumes:
       - .:/seamless
     ports:
-      - "8000:8000"
+      - "7000:7000"
