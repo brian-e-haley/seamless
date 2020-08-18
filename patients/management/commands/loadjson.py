@@ -15,6 +15,7 @@ class Command(BaseCommand):
     PATH = 'patients/source_data'
     help = f"Looks in the Patient app's source_data directory and attempts " \
            f"to load all patients from a {FILENAME} file."
+    GENDERS = {key.lower(): value for value, key in Patient.GENDERS}
 
     def handle(self, *args, **options):
         self.stdout.write(
@@ -31,7 +32,7 @@ class Command(BaseCommand):
                     first_name=data['name'][0]['given'][0],
                     last_name=data['name'][0]['family'][0],
                     organization=data['managingOrganization']['display'],
-                    gender=data['gender'])
+                    gender=self.GENDERS.get(data['gender'].lower()))
                 for condition in conditions:
                     patient.conditions.add(condition)
                 patient.save()
