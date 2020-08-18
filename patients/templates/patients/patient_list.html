@@ -15,33 +15,53 @@
   <title>Patients</title>
 </head>
 <body>
-<h1>Patients</h1>
-<table class="table">
-  <thead class="thead-dark">
-  <tr>
-    <th scope="col">Name of the patient</th>
-    <th scope="col">Organization name</th>
-    <th scope="col">Number of conditions they have</th>
-    <th scope="col">List of all conditions</th>
-  </tr>
-  </thead>
-  <tbody>
-  {% for patient in patients %}
-  <tr>
-    <th scope="row">{{ patient.first_name }} {{ patient.last_name }}</th>
-    <td>{{ patient.organization }}</td>
-    <td>{{ patient.conditions.count }}</td>
-    <td>
-      <ul class="list-group list-group-flush">
-        {% for condition in patient.conditions.all %}
-        <li class="list-group-item">{{ condition.name }}</li>
-        {% endfor %}
-      </ul>
-    </td>
-  </tr>
-  </tbody>
-</table>
-{% endfor %}
+<header class="site-header">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button aria-controls="navbarNavAltMarkup" aria-expanded="false"
+            aria-label="Toggle navigation" class="navbar-toggler"
+            data-target="#navbarNavAltMarkup" data-toggle="collapse"
+            type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="https://www.linkedin.com/in/brian-e-haley/">Created
+          by Brian Haley</a>
+        <a class="nav-link" href="https://github.com/brian-e-haley/seamless">Source
+          Code</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="container-fluid">
+  <h1>Patients</h1>
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name of the patient</th>
+      <th scope="col">Organization name</th>
+      <th scope="col">Number of conditions they have</th>
+      <th scope="col">List of all conditions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for patient in patients %}
+    <tr>
+      <th scope="row">{{ patient.first_name }} {{ patient.last_name }}</th>
+      <td>{{ patient.organization }}</td>
+      <td>{{ patient.conditions.count }}</td>
+      <td>
+        <ul class="list-group list-group-flush">
+          {% for condition in patient.conditions.all %}
+          <li class="list-group-item">{{ condition.name }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
