@@ -1,3 +1,6 @@
+from io import StringIO
+
+from django.core.management import call_command
 from django.test import TestCase
 
 from .models import (
@@ -30,3 +33,12 @@ class PatientModelTest(TestCase):
         patients = Patient.objects.count()
 
         self.assertEqual(patients, 1)
+
+
+class LoadJsonTest(TestCase):
+    def test_command_output(self):
+        out = StringIO()
+        call_command('loadjson', stdout=out)
+        self.assertIn('successfully', out.getvalue())
+        self.assertEqual(Patient.objects.count(), 1)
+        self.assertEqual(Condition.objects.count(), 3)
